@@ -101,6 +101,12 @@
     --chart-5: 340 75% 55%;
 }
 
+@layer utilities {
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
 @layer base {
   *,
   ::after,
@@ -109,15 +115,7 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
-}
-
-@layer utilities {
-  body {
-    font-family: Arial, Helvetica, sans-serif;
-  }
-}
-
-@layer base {
+  
   * {
     @apply border-border;
   }
