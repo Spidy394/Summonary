@@ -7,7 +7,7 @@ const Header = () => {
   const isLoggedIn = false;
 
   return (
-    <nav className="sticky top-0 z-50 w-full">
+    <nav className="w-full">
       <div className="container flex h-14 max-w-screen-2xl items-center justify-between px-4 lg:px-8 mx-auto">
         <div className="flex lg:flex-1">
           <NavLink
