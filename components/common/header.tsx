@@ -2,10 +2,9 @@ import { ThemeToggle } from "../theme-toggle";
 import { FileText } from "lucide-react";
 import { Button } from "../ui/button";
 import NavLink from "./nav-link";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const Header = () => {
-  const isLoggedIn = false;
-
   return (
     <nav className="w-full">
       <div className="container flex h-14 max-w-screen-2xl items-center justify-between px-4 lg:px-8 mx-auto">
@@ -20,25 +19,24 @@ const Header = () => {
         </div>
 
         <div className="flex lg:justify-center gap-4 lg:gap-8 lg:items-center">
-          {isLoggedIn ? (
+          <NavLink
+            href="/#pricing"
+            className="hover:text-primary transition-colors text-sm font-medium"
+          >
+            Pricing
+          </NavLink>
+          <SignedIn>
             <NavLink
               href="/dashboard"
               className="hover:text-primary transition-colors text-sm font-medium"
             >
               Your Summaries
             </NavLink>
-          ) : (
-            <NavLink
-              href="/#pricing"
-              className="hover:text-primary transition-colors text-sm font-medium"
-            >
-              Pricing
-            </NavLink>
-          )}
+          </SignedIn>
         </div>
 
         <div className="flex lg:justify-end lg:flex-1 items-center gap-3 lg:gap-4">
-          {isLoggedIn ? (
+          <SignedIn>
             <div className="flex gap-2 items-center">
               <Button asChild>
                 <NavLink href="/upload">Upload a PDF</NavLink>
@@ -46,16 +44,19 @@ const Header = () => {
               <span className="text-sm font-medium text-muted-foreground">
                 Pro
               </span>
-              <Button variant="outline">User</Button>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
             </div>
-          ) : (
+          </SignedIn>
+          <SignedOut>
             <NavLink
               href="/sign-in"
               className="hover:text-primary transition-colors text-sm font-medium"
             >
               Sign In
             </NavLink>
-          )}
+          </SignedOut>
 
           <ThemeToggle />
         </div>
